@@ -2,10 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>SlothScape — RuneScape Private Server (Mock)</title>
+  <title>SlothScape — RuneScape Private Server</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="dark">
-  <meta name="description" content="SlothScape — a chill OSRS-inspired private server. This is a mock landing page for testing.">
+  <meta name="description" content="SlothScape — a chill OSRS-inspired private server with custom bosses, balanced XP rates, and social-first gameplay.">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  
+  <!-- Social Meta Tags -->
+  <meta property="og:title" content="SlothScape — RuneScape Private Server">
+  <meta property="og:description" content="A chill OSRS-inspired private server with custom bosses, balanced XP rates, and social-first gameplay.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="favicon.svg">
+  <meta property="og:url" content="https://slothuim.github.io/slothscape-site/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="SlothScape — RuneScape Private Server">
+  <meta name="twitter:description" content="A chill OSRS-inspired private server with custom bosses, balanced XP rates, and social-first gameplay.">
+  <meta name="twitter:image" content="favicon.svg">
   <style>
     :root{
       --bg-0:#070c18;
@@ -205,7 +219,7 @@
         <a href="#download">Download</a>
       </div>
       <div class="cta">
-        <a class="btn secondary" href="#" id="btn-discord">Join Discord</a>
+        <a class="btn secondary" href="https://discord.gg/ZUt3U7D9ZU" target="_blank" rel="noopener noreferrer" id="btn-discord">Join Discord</a>
         <a class="btn" href="#play" id="btn-play">Play Now</a>
       </div>
     </div>
@@ -217,7 +231,7 @@
       <div>
         <div class="pill"><span class="sparkle"></span> <span style="font-weight:800">Season 1</span> · <span class="muted">“The Drowsy Depths”</span></div>
         <h1><span class="accent">Sloth</span>Scape</h1>
-        <p class="lead">A chill OSRS-inspired private server — XP with friends, custom bosses, no pressure. This page is a mock for layout/testing.</p>
+        <p class="lead">A chill OSRS-inspired private server — XP with friends, custom bosses, no pressure.</p>
         <div class="hero-actions">
           <a class="btn" href="#download">Download Client</a>
           <a class="btn secondary" href="#howto">How to Start</a>
@@ -385,7 +399,7 @@
           <div class="news-title">Join the Community</div>
           <div class="news-body">Events, giveaways, and help channels.</div>
           <div class="spacer"></div>
-          <a href="#" class="btn secondary">Join Discord</a>
+          <a href="https://discord.gg/ZUt3U7D9ZU" target="_blank" rel="noopener noreferrer" class="btn secondary">Join Discord</a>
         </div>
       </div>
     </div>
@@ -438,10 +452,6 @@
       document.getElementById('btn-play').addEventListener('click', (e)=>{
         e.preventDefault();
         alert('Mock: Launching SlothScape… (wire to your launcher/download)');
-      });
-      document.getElementById('btn-discord').addEventListener('click', (e)=>{
-        e.preventDefault();
-        alert('Mock: Open Discord invite… (replace with your invite link)');
       });
     })();
   </script>
