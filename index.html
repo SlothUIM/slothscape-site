@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>SlothScape — RuneScape Private Server (Mock)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="SlothScape — a chill OSRS-inspired private server. This is a mock landing page for testing.">
+  <style>
+    :root{
+      --bg-0:#070c18;
+      --bg-1:#0B1020;
+      --bg-2:#121C36;
+      --panel:#0d1428;
+      --line:#1b2746;
+      --muted:#9aa7bd;
+      --text:#e6ecf5;
+      --accent:#7FF0C6;
+      --accent-2:#59D8B1;
+      --danger:#ff6b6b;
+      --ok:#4cd57e;
+      --gold:#f5d06f;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+      background:
+        radial-gradient(1200px 600px at 10% -10%, #162044 0%, transparent 60%),
+        radial-gradient(1000px 600px at 100% 0%, #0d1533 0%, transparent 55%),
+        linear-gradient(180deg, var(--bg-1), var(--bg-0));
+      color:var(--text);
+      min-height:100vh;
+    }
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1200px;margin:0 auto;padding:0 20px}
+    /* Nav */
+    .nav{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(8px);
+      background: color-mix(in oklab, var(--panel) 75%, transparent);
+      border-bottom:1px solid var(--line);
+    }
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:12px 0;gap:12px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand .logo{width:40px;height:40px;flex:0 0 40px}
+    .brand .name{font-weight:800;letter-spacing:.3px;font-size:20px}
+    .nav-links{display:flex;align-items:center;gap:14px;color:var(--muted)}
+    .nav-links a{padding:8px 10px;border-radius:8px}
+    .nav-links a:hover{background:#0c1631;color:var(--text)}
+    .cta{display:flex;gap:10px;align-items:center}
+    .btn{
+      background:var(--accent);
+      color:#0b1320;
+      border:0;border-radius:10px;
+      padding:10px 14px;font-weight:800;cursor:pointer;
+      box-shadow: 0 6px 24px rgba(127,240,198,.18);
+      transition: transform .12s ease, box-shadow .12s ease, background .2s ease;
+    }
+    .btn:hover{transform:translateY(-1px); box-shadow:0 10px 28px rgba(127,240,198,.24)}
+    .btn.secondary{background:#233257;color:var(--text);box-shadow:none;border:1px solid var(--line)}
+    .status-pill{
+      display:flex;align-items:center;gap:8px;
+      padding:8px 12px;border-radius:999px;
+      background:#0b1735;border:1px solid var(--line);color:var(--muted);font-weight:600
+    }
+    .dot{width:10px;height:10px;border-radius:50%;background:var(--ok);box-shadow:0 0 10px var(--ok)}
+    .dot.off{background:var(--danger);box-shadow:0 0 10px var(--danger)}
+    /* Hero */
+    .hero{padding:48px 0 24px;border-bottom:1px solid var(--line)}
+    .hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:center}
+    @media (max-width: 900px){.hero-grid{grid-template-columns:1fr;}}
+    .hero h1{font-size:48px;line-height:1.1;margin:14px 0 8px}
+    .hero p.lead{color:var(--muted);font-size:18px;margin:0 0 18px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px}
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00));
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:16px;
+    }
+    .panel{background:#0c1430;border:1px solid var(--line);border-radius:14px;padding:16px}
+    .mini{padding:12px;border-radius:12px}
+    /* Sections */
+    .section{padding:28px 0}
+    .section h2{font-size:22px;margin:0 0 12px}
+    .grid{display:grid;gap:16px}
+    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+    .grid.cols-2{grid-template-columns:repeat(2,1fr)}
+    .grid.cols-4{grid-template-columns:repeat(4,1fr)}
+    @media (max-width: 900px){
+      .grid.cols-3,.grid.cols-4{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width: 600px){
+      .grid.cols-2,.grid.cols-3,.grid.cols-4{grid-template-columns:1fr}
+      .hero h1{font-size:36px}
+    }
+    .news-item{display:flex;gap:12px}
+    .news-date{
+      font-size:12px;color:var(--muted);font-weight:700;letter-spacing:.3px
+    }
+    .news-title{font-weight:800;margin:4px 0 6px}
+    .news-body{color:var(--muted)}
+    .badge{display:inline-block;font-size:11px;font-weight:800;padding:4px 8px;border-radius:999px;border:1px solid var(--line);background:#0b1735;margin-right:6px;color:#b9c4da}
+    .feature{padding:14px;border:1px solid var(--line);border-radius:12px;background:#0b1329}
+    .feature h3{margin:6px 0 6px;font-size:16px}
+    .feature p{margin:0;color:var(--muted);font-size:14px}
+    .hi-table{width:100%;border-collapse:separate;border-spacing:0 8px;font-size:14px}
+    .hi-table th{color:#b9c4da;font-weight:700;text-align:left;padding:6px}
+    .hi-table td{padding:10px;background:#0b1329;border:1px solid var(--line)}
+    .hi-table td:first-child{border-top-left-radius:8px;border-bottom-left-radius:8px}
+    .hi-table td:last-child{border-top-right-radius:8px;border-bottom-right-radius:8px}
+    .shots{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    @media (max-width:900px){.shots{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:600px){.shots{grid-template-columns:1fr}}
+    .shot{
+      aspect-ratio:16/9; border-radius:12px; overflow:hidden;
+      background:
+        linear-gradient(135deg, rgba(127,240,198,.12), transparent 35%),
+        linear-gradient(180deg, #0e1836, #0c1430);
+      border:1px solid var(--line);
+      display:flex;align-items:center;justify-content:center;color:#b9c4da;font-weight:700
+    }
+    .footer{
+      margin-top:28px;padding:18px 0;color:#9fb0c9;border-top:1px solid var(--line);
+      background:linear-gradient(180deg, transparent, rgba(255,255,255,0.02));
+      font-size:13px;
+    }
+    .link{color:var(--accent);font-weight:800}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:#0b1735;border:1px solid var(--line)}
+    /* Small helpers */
+    .spacer{height:8px}
+    .muted{color:var(--muted)}
+    .gold{color:var(--gold)}
+    .accent{color:var(--accent)}
+    /* Logo sizing in hero */
+    .logo-xl{width:96px;height:96px}
+    /* Icon dots */
+    .sparkle{
+      width:12px;height:12px;display:inline-block;
+      background: conic-gradient(from 0deg,#bffbe9, #7FF0C6, #59D8B1, #bffbe9);
+      clip-path: polygon(50% 0%, 65% 35%, 100% 50%, 65% 65%, 50% 100%, 35% 65%, 0% 50%, 35% 35%);
+      filter: drop-shadow(0 2px 6px rgba(127,240,198,.4));
+    }
+  </style>
+
+  <!-- Inline SVG symbol for the SlothScape icon (Tile + Coin S) so we can reuse it -->
+  <svg width="0" height="0" style="position:absolute; left:-9999px; top:-9999px" aria-hidden="true" focusable="false">
+    <symbol id="slothscape-logo" viewBox="0 0 64 64">
+      <defs>
+        <linearGradient id="tilebg" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0%" stop-color="#0B1020"/>
+          <stop offset="100%" stop-color="#121C36"/>
+        </linearGradient>
+        <linearGradient id="sgrad" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0%" stop-color="#CFFCEB"/>
+          <stop offset="55%" stop-color="#7FF0C6"/>
+          <stop offset="100%" stop-color="#59D8B1"/>
+        </linearGradient>
+        <linearGradient id="gloss" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.20"/>
+          <stop offset="70%" stop-color="#FFFFFF" stop-opacity="0.00"/>
+        </linearGradient>
+        <clipPath id="tileClip">
+          <rect x="8" y="8" width="48" height="48" rx="10" ry="10"/>
+        </clipPath>
+        <filter id="sShadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="1.2" stdDeviation="1.6" flood-color="#000000" flood-opacity="0.35"/>
+        </filter>
+      </defs>
+      <rect x="8" y="8" width="48" height="48" rx="10" ry="10" fill="url(#tilebg)"/>
+      <rect x="8" y="8" width="48" height="48" rx="10" ry="10" fill="none" stroke="#1B2746" stroke-width="2"/>
+      <rect x="11" y="11" width="42" height="42" rx="8" ry="8" fill="none" stroke="#263659" stroke-width="1.5"/>
+      <g clip-path="url(#tileClip)">
+        <rect x="8" y="8" width="48" height="22" fill="url(#gloss)"/>
+      </g>
+      <g filter="url(#sShadow)">
+        <path d="M 20 18 H 44 V 26 H 28 V 30 H 44 V 46 H 20 V 38 H 36 V 34 H 20 Z"
+              fill="url(#sgrad)" stroke="#0A1325" stroke-width="1.25" />
+      </g>
+      <g transform="translate(48,18) rotate(18)">
+        <path d="M0,-2.4 L2.4,0 L0,2.4 L-2.4,0 Z" fill="#BFFBE9" stroke="#7FF0C6" stroke-width="0.6"/>
+      </g>
+    </symbol>
+  </svg>
+</head>
+
+<body>
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <svg class="logo" role="img" aria-label="SlothScape logo"><use href="#slothscape-logo"></use></svg>
+        <div class="name">SlothScape</div>
+        <div class="status-pill" id="status-pill" title="Mock server status">
+          <span class="dot" id="status-dot"></span>
+          <span id="status-text">Online</span>
+          <span class="muted" id="online-count">· 214 online</span>
+        </div>
+      </div>
+      <div class="nav-links" role="navigation" aria-label="Main">
+        <a href="#news">News</a>
+        <a href="#features">Features</a>
+        <a href="#hiscores">Highscores</a>
+        <a href="#download">Download</a>
+      </div>
+      <div class="cta">
+        <a class="btn secondary" href="#" id="btn-discord">Join Discord</a>
+        <a class="btn" href="#play" id="btn-play">Play Now</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="pill"><span class="sparkle"></span> <span style="font-weight:800">Season 1</span> · <span class="muted">“The Drowsy Depths”</span></div>
+        <h1><span class="accent">Sloth</span>Scape</h1>
+        <p class="lead">A chill OSRS-inspired private server — XP with friends, custom bosses, no pressure. This page is a mock for layout/testing.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#download">Download Client</a>
+          <a class="btn secondary" href="#howto">How to Start</a>
+          <a class="btn secondary" href="#vote">Vote</a>
+          <a class="btn secondary" href="#store">Store</a>
+        </div>
+        <div class="spacer"></div>
+        <div class="muted" style="font-size:13px">Direct Connect: <strong>play.slothscape.gg</strong> · Port <strong>43594</strong> (mock)</div>
+      </div>
+      <div>
+        <div class="card">
+          <div style="display:flex;gap:12px;align-items:center;margin-bottom:10px">
+            <svg class="logo logo-xl" role="img" aria-label="SlothScape logo large"><use href="#slothscape-logo"></use></svg>
+            <div>
+              <div class="news-date">LATEST UPDATE · 2025-09-01</div>
+              <div class="news-title">Wilderness Boss: The Drowsy Warden</div>
+              <div class="news-body">New droptable, sleep stacks, and a “Power Nap” enrage. Bring stun clears!</div>
+            </div>
+          </div>
+          <div class="grid cols-2">
+            <div class="panel mini">
+              <div class="news-date">SERVER RATES</div>
+              <div><span class="badge">XP: x10</span><span class="badge">Drop: x2</span><span class="badge">Ironman</span></div>
+            </div>
+            <div class="panel mini">
+              <div class="news-date">WEEKLY EVENTS</div>
+              <div><span class="badge">Boss Bingo</span><span class="badge">Skilling Comp</span><span class="badge">Hide & Seek</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- News -->
+  <section class="section" id="news">
+    <div class="container">
+      <h2>News & Updates</h2>
+      <div class="grid cols-3">
+        <article class="card news-item">
+          <div>
+            <div class="news-date">2025-08-30</div>
+            <div class="news-title">QoL Patch 0.3.2</div>
+            <div class="news-body">Bank search remembers filters, clue scroll steps fixed, and a new “Sleepy” cosmetic set drops from AFK skilling.</div>
+          </div>
+        </article>
+        <article class="card news-item">
+          <div>
+            <div class="news-date">2025-08-25</div>
+            <div class="news-title">Season 1 Launch: The Drowsy Depths</div>
+            <div class="news-body">Fresh economy, league tasks, and sleepy relics that power up while AFK. All progress is permanent post-season.</div>
+          </div>
+        </article>
+        <article class="card news-item">
+          <div>
+            <div class="news-date">2025-08-18</div>
+            <div class="news-title">Dev Blog: Why Sloth?</div>
+            <div class="news-body">Our philosophy: low-stress progression and social-first gameplay. Min-maxers welcome too—just… at your pace.</div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="section" id="features">
+    <div class="container">
+      <h2>Features</h2>
+      <div class="grid cols-4">
+        <div class="feature">
+          <div class="news-date">PVE</div>
+          <h3>Custom Bosses</h3>
+          <p>Unique mechanics like sleep stacks, lullaby beams, and enrage naps.</p>
+        </div>
+        <div class="feature">
+          <div class="news-date">RATES</div>
+          <h3>Chill XP</h3>
+          <p>Balanced x10 rates and doubled drop chance to respect your time.</p>
+        </div>
+        <div class="feature">
+          <div class="news-date">SOCIAL</div>
+          <h3>Clan Perks</h3>
+          <p>Group instance keys, clan halls, and shared skilling buffs.</p>
+        </div>
+        <div class="feature">
+          <div class="news-date">QOL</div>
+          <h3>Modern Client</h3>
+          <p>GPU, tile indicators, loot beams, and fully configurable hotkeys.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Highscores (mock) -->
+  <section class="section" id="hiscores">
+    <div class="container">
+      <h2>Highscores (Mock Data)</h2>
+      <div class="card">
+        <table class="hi-table" aria-label="Highscores table">
+          <thead>
+            <tr>
+              <th style="width:50%">Player</th>
+              <th>Total Level</th>
+              <th>EHP</th>
+              <th>KC: Warden</th>
+            </tr>
+          </thead>
+          <tbody id="hiscore-body">
+            <tr>
+              <td>1. SnoozyRune</td><td>2277</td><td>318.4</td><td>241</td>
+            </tr>
+            <tr>
+              <td>2. PillowCrit</td><td>2240</td><td>280.2</td><td>190</td>
+            </tr>
+            <tr>
+              <td>3. NapAttack</td><td>2193</td><td>250.1</td><td>176</td>
+            </tr>
+            <tr>
+              <td>4. DuvetSlayer</td><td>2130</td><td>220.9</td><td>151</td>
+            </tr>
+            <tr>
+              <td>5. CalmGrind</td><td>2084</td><td>198.0</td><td>129</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="spacer"></div>
+        <div class="muted" style="font-size:13px">These are placeholders. You can wire real data later.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Screenshots -->
+  <section class="section" id="shots">
+    <div class="container">
+      <h2>Screenshots</h2>
+      <div class="shots">
+        <div class="shot">Screenshot Placeholder</div>
+        <div class="shot">Screenshot Placeholder</div>
+        <div class="shot">Screenshot Placeholder</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Download / How To -->
+  <section class="section" id="download">
+    <div class="container">
+      <h2>Get Started</h2>
+      <div class="grid cols-3">
+        <div class="card">
+          <div class="news-date">STEP 1</div>
+          <div class="news-title">Create an Account</div>
+          <div class="news-body">Use the in-game register or link a Discord account. (Mock link)</div>
+          <div class="spacer"></div>
+          <a href="#" class="btn secondary">Register</a>
+        </div>
+        <div class="card">
+          <div class="news-date">STEP 2</div>
+          <div class="news-title">Download Client</div>
+          <div class="news-body">Windows, macOS, and Linux builds. Java will bundle with the launcher. (Mock)</div>
+          <div class="spacer"></div>
+          <a href="#" class="btn">Download</a>
+        </div>
+        <div class="card">
+          <div class="news-date">STEP 3</div>
+          <div class="news-title">Join the Community</div>
+          <div class="news-body">Events, giveaways, and help channels.</div>
+          <div class="spacer"></div>
+          <a href="#" class="btn secondary">Join Discord</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container" style="display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:10px">
+        <svg class="logo" style="width:28px;height:28px"><use href="#slothscape-logo"></use></svg>
+        <div>© 2025 SlothScape. This mock website is for testing layout and theme only.</div>
+      </div>
+      <div class="muted">Not affiliated with or endorsed by Jagex Ltd or Old School RuneScape.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Mock dynamic bits
+    (function(){
+      const dot = document.getElementById('status-dot');
+      const text = document.getElementById('status-text');
+      const count = document.getElementById('online-count');
+
+      // Randomize online every 6s (mock)
+      function updateOnline(){
+        // 90% chance online, 10% maintenance
+        const online = Math.random() > 0.1;
+        const players = Math.floor(180 + Math.random()*120);
+        dot.classList.toggle('off', !online);
+        text.textContent = online ? 'Online' : 'Maintenance';
+        count.textContent = online ? `· ${players} online` : '· back soon';
+      }
+      updateOnline();
+      setInterval(updateOnline, 6000);
+
+      // Smooth scroll for internal links
+      document.querySelectorAll('a[href^="#"]').forEach(a=>{
+        a.addEventListener('click', (e)=>{
+          const id = a.getAttribute('href').slice(1);
+          if(!id) return;
+          const el = document.getElementById(id);
+          if(el){
+            e.preventDefault();
+            el.scrollIntoView({behavior:'smooth', block:'start'});
+          }
+        });
+      });
+
+      // Placeholder actions
+      document.getElementById('btn-play').addEventListener('click', (e)=>{
+        e.preventDefault();
+        alert('Mock: Launching SlothScape… (wire to your launcher/download)');
+      });
+      document.getElementById('btn-discord').addEventListener('click', (e)=>{
+        e.preventDefault();
+        alert('Mock: Open Discord invite… (replace with your invite link)');
+      });
+    })();
+  </script>
+</body>
+</html>
