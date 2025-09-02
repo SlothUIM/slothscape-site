@@ -156,6 +156,21 @@
       clip-path: polygon(50% 0%, 65% 35%, 100% 50%, 65% 65%, 50% 100%, 35% 65%, 0% 50%, 35% 35%);
       filter: drop-shadow(0 2px 6px rgba(127,240,198,.4));
     }
+    /* Supporters on homepage */
+.sup-grid .card { text-align:center; }
+.sup-avatar{
+  width:68px;height:68px;border-radius:50%;margin:0 auto .5rem;
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
+  background:#0b1735;color:#e6ecf5;font-weight:800;font-size:22px;
+  border:1px solid var(--line)
+}
+.sup-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.sup-name{font-weight:800}
+.sup-since{font-size:12px;color:var(--muted)}
+.tier-badge{
+  display:inline-block;margin-top:.35rem;font-size:11px;font-weight:800;
+  padding:.25rem .5rem;border-radius:999px;border:1px solid var(--line);color:#b9c4da
+}
   </style>
 
   <!-- Inline SVG symbol for the SlothScape icon (Tile + Coin S) so we can reuse it -->
@@ -218,6 +233,7 @@
         <a href="features.html">Features</a>
         <a href="#hiscores">Highscores</a>
         <a href="download.html">Download</a>
+        <a href="supporters.html">Supporters</a>
         <!-- New site pages -->
         <a href="about.html">About</a>
         <a href="faq.html">FAQ</a>
@@ -414,7 +430,17 @@
       </div>
     </div>
   </section>
-
+<!-- Supporters -->
+<section class="section" id="supporters">
+  <div class="container">
+    <h2>Supporters</h2>
+    <div class="grid cols-4 sup-grid" id="supporter-grid-home">
+      <div class="card muted">Loading supporters…</div>
+    </div>
+    <div class="spacer"></div>
+    <a class="btn secondary" href="supporters.html">See all supporters</a>
+  </div>
+</section>
   <!-- Footer -->
   <footer class="footer">
     <div class="container" style="display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap">
@@ -431,6 +457,92 @@
 
   <script>
     // Mock dynamic bits
+    // Supporters (homepage preview)
+(function(){
+  const GRID_ID = 'supporter-grid-home';
+  const TIER_ORDER = ['Diamond','Gold','Silver','Bronze','Supporter'];
+  const grid = document.getElementById(GRID_ID);
+  if (!grid) return;
+
+  function initials(name){ return (name||'?').trim().charAt(0).toUpperCase() || '?'; }
+  function formatDate(iso){
+    if(!iso) return '';
+    const d = new Date(iso);
+    return isNaN(d) ? '' : d.toLocaleDateString(undefined,{year:'numeric',month:'short'});
+  }
+
+  fetch('supporters.json', { cache:'no-store' })
+    .then(r => r.ok ? r.json() : Promise.reject())
+    .then(data => {
+      const all = (data.supporters || []).map(s=>({
+        name: s.name || 'Anonymous',
+        avatar: s.avatar || '',
+        tier: s.tier || 'Supporter',
+        since: s.since || '',
+        url: s.url || 'https://patreon.com/'
+      }));
+
+      // Sort by tier, then newest since date
+      const order = new Map(TIER_ORDER.map((t,i)=>[t,i]));
+      all.sort((a,b)=>{
+        const ta=(order.get(a.tier)??999), tb=(order.get(b.tier)??999);
+        if(ta!==tb) return ta-tb;
+        const da=a.since?Date.parse(a.since):0, db=b.since?Date.parse(b.since):0;
+        return db-da;
+      });
+
+      // Show top 12 on homepage
+      const top = all.slice(0, 12);
+
+      if(top.length===0){
+        grid.innerHTML = '<div class="card muted">No supporters yet.</div>';
+        return;
+      }
+
+      grid.innerHTML = '';
+      for(const s of top){
+        const a = document.createElement('a');
+        a.className = 'card';
+        a.href = s.url;
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.title = s.name;
+
+        const avatar = document.createElement('div');
+        avatar.className = 'sup-avatar';
+        if (s.avatar.trim()){
+          const img = document.createElement('img');
+          img.src = s.avatar;
+          img.alt = s.name;
+          avatar.appendChild(img);
+        } else {
+          avatar.textContent = initials(s.name);
+        }
+
+        const name = document.createElement('div');
+        name.className = 'sup-name';
+        name.textContent = s.name;
+
+        const since = document.createElement('div');
+        since.className = 'sup-since';
+        const sinceText = s.since ? `Since ${formatDate(s.since)}` : '';
+        since.textContent = sinceText;
+
+        const badge = document.createElement('div');
+        badge.className = 'tier-badge';
+        badge.textContent = s.tier;
+
+        a.appendChild(avatar);
+        a.appendChild(name);
+        if (sinceText) a.appendChild(since);
+        a.appendChild(badge);
+        grid.appendChild(a);
+      }
+    })
+    .catch(()=>{
+      grid.innerHTML = '<div class="card muted">Supporters unavailable.</div>';
+    });
+})();
     (function(){
       const dot = document.getElementById('status-dot');
       const text = document.getElementById('status-text');
