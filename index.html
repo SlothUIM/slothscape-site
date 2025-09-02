@@ -438,7 +438,7 @@
       <div class="card muted">Loading supporters…</div>
     </div>
     <div class="spacer"></div>
-    <a class="btn secondary" href="supporters.html">See all supporters</a>
+    <a class="btn secondary" href="supporters_Version3.html">See all supporters</a>
   </div>
 </section>
   <!-- Footer -->
@@ -471,7 +471,7 @@
     return isNaN(d) ? '' : d.toLocaleDateString(undefined,{year:'numeric',month:'short'});
   }
 
-  fetch('supporters.json', { cache:'no-store' })
+  fetch('supporters_Version3.json', { cache:'no-store' })
     .then(r => r.ok ? r.json() : Promise.reject())
     .then(data => {
       const all = (data.supporters || []).map(s=>({
