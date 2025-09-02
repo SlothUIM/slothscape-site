@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Download – YourAppName</title>
+  <link rel="stylesheet" href="assets/css/site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">YourAppName</a>
+    <nav class="nav">
+      <a href="about.html">About</a>
+      <a href="features.html">Features</a>
+      <a href="download.html" aria-current="page">Download</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1>Download</h1>
+    <p>Your platform is detected below. If it’s wrong, pick manually.</p>
+
+    <div class="grid downloads">
+      <a class="card button" id="dl-windows" href="#" data-href="https://example.com/YourAppName-setup.exe">
+        <span>Windows</span>
+        <small>.exe installer</small>
+      </a>
+      <a class="card button" id="dl-mac" href="#" data-href="https://example.com/YourAppName-mac.dmg">
+        <span>macOS</span>
+        <small>.dmg</small>
+      </a>
+      <a class="card button" id="dl-linux" href="#" data-href="https://example.com/YourAppName-linux.zip">
+        <span>Linux</span>
+        <small>.zip</small>
+      </a>
+      <a class="card button" id="dl-jar" href="https://example.com/YourAppName-all.jar">
+        <span>Universal</span>
+        <small>Fat JAR</small>
+      </a>
+    </div>
+
+    <section>
+      <h2>Requirements</h2>
+      <ul>
+        <li>Java 8+ (bundled with installer on Windows/macOS)</li>
+        <li>OpenGL‑capable GPU</li>
+        <li>Optional: Discord app for RPC</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Verify Checksums</h2>
+      <pre class="code"># Replace with real checksums
+YourAppName-setup.exe  SHA256: abc123...
+YourAppName-mac.dmg    SHA256: def456...
+YourAppName-linux.zip  SHA256: ghi789...
+YourAppName-all.jar    SHA256: jkl012...</pre>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> YourAppName • <a href="privacy.html">Privacy</a> • <a href="terms.html">Terms</a></p>
+  </footer>
+  <script src="assets/js/site.js"></script>
+</body>
+</html>

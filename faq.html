@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FAQ – YourAppName</title>
+  <link rel="stylesheet" href="assets/css/site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">YourAppName</a>
+    <nav class="nav">
+      <a href="about.html">About</a>
+      <a href="features.html">Features</a>
+      <a href="download.html">Download</a>
+      <a href="faq.html" aria-current="page">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1>Frequently Asked Questions</h1>
+
+    <details class="card">
+      <summary>What Java version do I need?</summary>
+      <p>Java 8 or newer. Windows/macOS installers bundle a compatible runtime.</p>
+    </details>
+
+    <details class="card">
+      <summary>How do I report a bug?</summary>
+      <p>Use the Contact page or open an issue on our GitHub repository. Include logs from the logs/ directory if available.</p>
+    </details>
+
+    <details class="card">
+      <summary>Is Discord RPC required?</summary>
+      <p>No. It’s optional and off by default.</p>
+    </details>
+
+    <details class="card">
+      <summary>Where are settings stored?</summary>
+      <p>By default in your user directory under .yourappname/. You can export/import profiles.</p>
+    </details>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> YourAppName • <a href="privacy.html">Privacy</a> • <a href="terms.html">Terms</a></p>
+  </footer>
+  <script src="assets/js/site.js"></script>
+</body>
+</html>
