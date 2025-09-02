@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Supporters — SlothScape</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets_css_site.css">
+  <style>
+    .page-head { display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-bottom:1rem; }
+    .filters { display:flex; flex-wrap:wrap; gap:.5rem; }
+    .button.secondary {
+      background: transparent; color: var(--text);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.16);
+    }
+    .button.secondary[aria-pressed="true"] {
+      background: var(--panel);
+      box-shadow: inset 0 0 0 2px rgba(255,255,255,.22);
+    }
+    .supporter-card { text-align:center; padding: 1.2rem; }
+    .supporter-card .avatar {
+      width:80px; height:80px; border-radius:50%; margin:0 auto .6rem;
+      display:flex; align-items:center; justify-content:center; overflow:hidden;
+      background: rgba(255,255,255,.08); color:#fff; font-weight:800; font-size:28px;
+      border:1px solid rgba(255,255,255,.12);
+    }
+    .supporter-card .avatar img { width:100%; height:100%; object-fit:cover; display:block; }
+    .supporter-card .name { font-weight:800; }
+    .supporter-card .since { font-size:12px; color: var(--muted); }
+    .tier-badge {
+      display:inline-block; margin-top:.4rem; font-size:12px; font-weight:800;
+      padding:.25rem .5rem; border-radius:999px; border:1px solid rgba(255,255,255,.16);
+    }
+    .tier-Diamond { color:#b8f7ff; border-color:#7de3ff; box-shadow:0 0 24px rgba(125,227,255,.15) inset; }
+    .tier-Gold    { color:#ffe39a; border-color:#f5d06f; box-shadow:0 0 24px rgba(245,208,111,.10) inset; }
+    .tier-Silver  { color:#e2e6f0; border-color:#b9c4da; }
+    .tier-Bronze  { color:#f2c1a0; border-color:#dba983; }
+    .tier-Supporter { color:#b9c4da; border-color:#9aa7bd; }
+    .hero-cta { display:flex; gap:.6rem; flex-wrap:wrap; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">SlothScape</div>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="features.html">Features</a>
+      <a href="download.html">Download</a>
+      <a href="faq.html">FAQ</a>
+      <a href="about.html">About</a>
+      <a href="changelog.html">Changelog</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <div>
+        <h1 style="margin:.2rem 0">Supporter Wall</h1>
+        <div class="muted">Huge thanks to everyone backing SlothScape. You keep the server snoozing smoothly.</div>
+      </div>
+      <div class="hero-cta">
+        <a class="button" id="btn-patreon" href="https://patreon.com/" target="_blank" rel="noopener">Become a Patron</a>
+      </div>
+    </div>
+
+    <div class="filters" role="toolbar" aria-label="Tier filter">
+      <button class="button secondary" data-filter="All" aria-pressed="true">All</button>
+      <button class="button secondary" data-filter="Diamond" aria-pressed="false">Diamond</button>
+      <button class="button secondary" data-filter="Gold" aria-pressed="false">Gold</button>
+      <button class="button secondary" data-filter="Silver" aria-pressed="false">Silver</button>
+      <button class="button secondary" data-filter="Bronze" aria-pressed="false">Bronze</button>
+      <button class="button secondary" data-filter="Supporter" aria-pressed="false">Supporter</button>
+    </div>
+
+    <div class="muted" id="supporter-stats" style="margin:.75rem 0 1rem">Loading supporters…</div>
+
+    <div id="supporter-grid" class="grid"></div>
+
+    <div style="margin-top:1.5rem" class="muted">
+      Want to be featured? Make sure your Patreon privacy settings allow creators to display your name and avatar.
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="brand">© 2025 SlothScape</div>
+    <div><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></div>
+  </footer>
+
+  <script>
+    // Configure your Patreon page URL:
+    const PATRON_URL = 'https://patreon.com/'; // e.g. 'https://patreon.com/SlothScape'
+    document.getElementById('btn-patreon').setAttribute('href', PATRON_URL);
+
+    const TIER_ORDER = ['Diamond','Gold','Silver','Bronze','Supporter'];
+    let ALL_SUPPORTERS = [];
+    let ACTIVE_FILTER = 'All';
+
+    function formatDate(iso) {
+      if (!iso) return '';
+      const d = new Date(iso);
+      if (isNaN(d)) return '';
+      return d.toLocaleDateString(undefined, { year:'numeric', month:'short' });
+    }
+
+    function render() {
+      const grid = document.getElementById('supporter-grid');
+      const filtered = ACTIVE_FILTER === 'All'
+        ? ALL_SUPPORTERS
+        : ALL_SUPPORTERS.filter(s => s.tier === ACTIVE_FILTER);
+
+      grid.innerHTML = '';
+      if (filtered.length === 0) {
+        grid.innerHTML = '<div class="card placeholder">No supporters in this tier yet.</div>';
+      } else {
+        for (const s of filtered) {
+          const card = document.createElement('a');
+          card.className = 'card supporter-card';
+          card.href = s.url || PATRON_URL;
+          card.target = '_blank';
+          card.rel = 'noopener';
+          card.title = s.name;
+
+          const avatar = document.createElement('div');
+          avatar.className = 'avatar';
+
+          if (s.avatar && s.avatar.trim()) {
+            const img = document.createElement('img');
+            img.src = s.avatar;
+            img.alt = s.name;
+            avatar.appendChild(img);
+          } else {
+            const initials = (s.name || '?').trim().charAt(0).toUpperCase();
+            avatar.textContent = initials || '?';
+          }
+
+          const name = document.createElement('div');
+          name.className = 'name';
+          name.textContent = s.name || 'Anonymous';
+
+          const since = document.createElement('div');
+          since.className = 'since';
+          const sinceText = s.since ? `Since ${formatDate(s.since)}` : '';
+          since.textContent = sinceText;
+
+          const badge = document.createElement('div');
+          const tier = s.tier && TIER_ORDER.includes(s.tier) ? s.tier : 'Supporter';
+          badge.className = `tier-badge tier-${tier}`;
+          badge.textContent = tier;
+
+          card.appendChild(avatar);
+          card.appendChild(name);
+          if (sinceText) card.appendChild(since);
+          card.appendChild(badge);
+          grid.appendChild(card);
+        }
+      }
+
+      const stats = document.getElementById('supporter-stats');
+      const counts = TIER_ORDER.map(t => {
+        const n = ALL_SUPPORTERS.filter(s => s.tier === t).length;
+        return n ? `${t}: ${n}` : null;
+      }).filter(Boolean);
+      const total = ALL_SUPPORTERS.length;
+      stats.textContent = total ? `Total supporters: ${total} · ${counts.join(' · ')}` : 'No supporters yet.';
+    }
+
+    function setFilter(next) {
+      ACTIVE_FILTER = next;
+      document.querySelectorAll('.filters .button').forEach(b => {
+        b.setAttribute('aria-pressed', String(b.dataset.filter === next));
+      });
+      render();
+    }
+
+    document.querySelectorAll('.filters .button').forEach(b => {
+      b.addEventListener('click', () => setFilter(b.dataset.filter));
+    });
+
+    fetch('supporters.json', { cache:'no-store' })
+      .then(r => r.ok ? r.json() : Promise.reject(new Error('failed to load')))
+      .then(data => {
+        const order = new Map(TIER_ORDER.map((t,i)=>[t,i]));
+        ALL_SUPPORTERS = (data.supporters || [])
+          .map(s => ({
+            name: s.name || 'Anonymous',
+            avatar: s.avatar || '',
+            tier: s.tier || 'Supporter',
+            since: s.since || '',
+            url: s.url || ''
+          }))
+          .sort((a,b) => {
+            const ta = order.get(a.tier) ?? 999;
+            const tb = order.get(b.tier) ?? 999;
+            if (ta !== tb) return ta - tb;
+            const da = a.since ? Date.parse(a.since) : 0;
+            const db = b.since ? Date.parse(b.since) : 0;
+            return db - da; // newest first within tier
+          });
+        render();
+      })
+      .catch(() => {
+        ALL_SUPPORTERS = [];
+        render();
+      });
+  </script>
+</body>
+</html>
