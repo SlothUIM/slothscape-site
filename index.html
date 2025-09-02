@@ -59,7 +59,7 @@
     .brand{display:flex;align-items:center;gap:12px}
     .brand .logo{width:40px;height:40px;flex:0 0 40px}
     .brand .name{font-weight:800;letter-spacing:.3px;font-size:20px}
-    .nav-links{display:flex;align-items:center;gap:14px;color:var(--muted)}
+    .nav-links{display:flex;align-items:center;gap:14px;color:var(--muted);flex-wrap:wrap}
     .nav-links a{padding:8px 10px;border-radius:8px}
     .nav-links a:hover{background:#0c1631;color:var(--text)}
     .cta{display:flex;gap:10px;align-items:center}
@@ -213,14 +213,20 @@
         </div>
       </div>
       <div class="nav-links" role="navigation" aria-label="Main">
+        <!-- Internal sections still work for the homepage -->
         <a href="#news">News</a>
-        <a href="#features">Features</a>
+        <a href="features.html">Features</a>
         <a href="#hiscores">Highscores</a>
-        <a href="#download">Download</a>
+        <a href="download.html">Download</a>
+        <!-- New site pages -->
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+        <a href="changelog.html">Changelog</a>
       </div>
       <div class="cta">
         <a class="btn secondary" href="https://discord.gg/ZUt3U7D9ZU" target="_blank" rel="noopener noreferrer" id="btn-discord">Join Discord</a>
-        <a class="btn" href="#play" id="btn-play">Play Now</a>
+        <a class="btn" href="download.html" id="btn-play">Play Now</a>
       </div>
     </div>
   </nav>
@@ -233,8 +239,8 @@
         <h1><span class="accent">Sloth</span>Scape</h1>
         <p class="lead">A chill OSRS-inspired private server</p>
         <div class="hero-actions">
-          <a class="btn" href="#download">Download Client</a>
-          <a class="btn secondary" href="#howto">How to Start</a>
+          <a class="btn" href="download.html">Download Client</a>
+          <a class="btn secondary" href="faq.html">How to Start</a>
           <a class="btn secondary" href="#vote">Vote</a>
           <a class="btn secondary" href="#store">Store</a>
         </div>
@@ -394,7 +400,7 @@
           <div class="news-body">Windows, macOS, and Linux builds. Java will bundle with the launcher. (Mock)</div>
           <div class="spacer"></div>
           <div class="spacer"></div>
-          <a href="#" class="btn">Download</a>
+          <a href="download.html" class="btn">Download</a>
         </div>
         <div class="card">
           <div class="news-date">STEP 3</div>
@@ -416,6 +422,9 @@
         <div>© 2025 SlothScape. This mock website is for testing layout and theme only.</div>
       </div>
       <div class="muted">Not affiliated with or endorsed by Jagex Ltd or Old School RuneScape.</div>
+      <div>
+        <a href="privacy.html" class="link">Privacy</a> · <a href="terms.html" class="link">Terms</a>
+      </div>
     </div>
   </footer>
 
@@ -453,8 +462,11 @@
 
       // Placeholder actions
       document.getElementById('btn-play').addEventListener('click', (e)=>{
-        e.preventDefault();
-        alert('Mock: Launching SlothScape… (wire to your launcher/download)');
+        // If this is linking to download.html, let it navigate instead of alert
+        if (e.currentTarget.getAttribute('href') === '#') {
+          e.preventDefault();
+          alert('Mock: Launching SlothScape… (wire to your launcher/download)');
+        }
       });
     })();
   </script>
