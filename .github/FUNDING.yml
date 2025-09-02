@@ -3,7 +3,7 @@
 # Keep only the lines you use.
 
 github: [SlothUIM]                # Up to 4 GitHub Sponsors-enabled usernames
-patreon: patreon.com/whitelavendr    # Single Patreon username
-buy_me_a_coffee: https://www.buymeacoffee.com/slothearth        # Single Buy Me a Coffee username
+patreon: whitelavendr    # Single Patreon username
+buy_me_a_coffee: slothearth        # Single Buy Me a Coffee username
 custom:                           # Up to 4 custom sponsorship URLs
   - https://paypal.me/whitelav
