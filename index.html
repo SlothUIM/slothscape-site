@@ -157,20 +157,43 @@
       filter: drop-shadow(0 2px 6px rgba(127,240,198,.4));
     }
     /* Supporters on homepage */
-.sup-grid .card { text-align:center; }
-.sup-avatar{
-  width:68px;height:68px;border-radius:50%;margin:0 auto .5rem;
-  display:flex;align-items:center;justify-content:center;overflow:hidden;
-  background:#0b1735;color:#e6ecf5;font-weight:800;font-size:22px;
-  border:1px solid var(--line)
-}
-.sup-avatar img{width:100%;height:100%;object-fit:cover;display:block}
-.sup-name{font-weight:800}
-.sup-since{font-size:12px;color:var(--muted)}
-.tier-badge{
-  display:inline-block;margin-top:.35rem;font-size:11px;font-weight:800;
-  padding:.25rem .5rem;border-radius:999px;border:1px solid var(--line);color:#b9c4da
-}
+ .sup-grid .card { text-align:center; }
+ .sup-avatar{
+   width:68px;height:68px;border-radius:50%;margin:0 auto .5rem;
+   display:flex;align-items:center;justify-content:center;overflow:hidden;
+   background:#0b1735;color:#e6ecf5;font-weight:800;font-size:22px;
+   border:1px solid var(--line)
+ }
+ .sup-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+ .sup-name{font-weight:800}
+ .sup-since{font-size:12px;color:var(--muted)}
+ .tier-badge{
+   display:inline-block;margin-top:.35rem;font-size:11px;font-weight:800;
+   padding:.25rem .5rem;border-radius:999px;border:1px solid var(--line);color:#b9c4da
+ }
+
+    /* Modal (local-only registration) */
+    .modal-backdrop{
+      position:fixed; inset:0;
+      background: rgba(0,0,0,.45);
+      backdrop-filter: blur(6px);
+      display:none;
+      align-items:center; justify-content:center;
+      z-index:100;
+    }
+    .modal-backdrop.show{display:flex}
+    .modal{
+      width:100%; max-width:520px;
+      background:#0c1430; border:1px solid var(--line); border-radius:14px;
+      padding:16px; box-shadow:0 20px 60px rgba(0,0,0,.5)
+    }
+    .modal header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+    .modal .close{background:transparent;border:0;color:var(--muted);font-size:20px;cursor:pointer;padding:6px}
+    .modal label{display:block;margin:.55rem 0 .25rem;font-weight:700}
+    .modal input{
+      width:100%; padding:.7rem .8rem; border-radius:10px;
+      border:1px solid var(--line); background:#0b1735; color:var(--text)
+    }
   </style>
 
   <!-- Inline SVG symbol for the SlothScape icon (Tile + Coin S) so we can reuse it -->
@@ -405,10 +428,10 @@
         <div class="card">
           <div class="news-date">STEP 1</div>
           <div class="news-title">Create an Account</div>
-          <div class="news-body">Use the in-game register or link a Discord account. (Mock link)</div>
+          <div class="news-body" id="register-body">Use the in-game register or link a Discord account. (Mock link)</div>
           <div class="spacer"></div>
           <div class="spacer"></div>
-          <a href="#" class="btn secondary">Register</a>
+          <button class="btn secondary" id="btn-open-register" type="button">Register</button>
         </div>
         <div class="card">
           <div class="news-date">STEP 2</div>
@@ -454,6 +477,30 @@
       </div>
     </div>
   </footer>
+
+  <!-- Local-only Register Modal -->
+  <div class="modal-backdrop" id="register-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal" role="document">
+      <header>
+        <h3 style="margin:0">Create your account</h3>
+        <button class="close" id="register-close" aria-label="Close">×</button>
+      </header>
+      <form id="register-form" novalidate>
+        <label for="display_name">Website display name</label>
+        <input id="display_name" name="display_name" required minlength="3" maxlength="20" placeholder="e.g., DrowsySloth">
+        <label for="login_username">Login username (private)</label>
+        <input id="login_username" name="login_username" required pattern="^[a-z0-9_]{3,20}$" placeholder="a–z, 0–9, _ only">
+        <div class="muted" style="font-size:12px;margin:.35rem 0 .6rem">
+          This is a local-only mock. No data leaves your browser.
+        </div>
+        <div style="display:flex;gap:.5rem;justify-content:flex-end;align-items:center">
+          <button class="btn secondary" type="button" id="register-delete" style="margin-right:auto;display:none">Delete local</button>
+          <button class="btn" type="submit" id="register-submit">Create account</button>
+        </div>
+        <div id="register-msg" class="muted" style="margin-top:.55rem"></div>
+      </form>
+    </div>
+  </div>
 
   <script>
     // Mock dynamic bits
@@ -581,6 +628,104 @@
           alert('Mock: Launching SlothScape… (wire to your launcher/download)');
         }
       });
+    })();
+
+    // Local-only registration modal logic
+    (function(){
+      const LS_KEY = 'slothscape_user';
+      const modal = document.getElementById('register-modal');
+      const form = document.getElementById('register-form');
+      const btnOpen = document.getElementById('btn-open-register');
+      const btnClose = document.getElementById('register-close');
+      const btnDelete = document.getElementById('register-delete');
+      const msg = document.getElementById('register-msg');
+      const bodyText = document.getElementById('register-body');
+      const inputDisplay = document.getElementById('display_name');
+      const inputLogin = document.getElementById('login_username');
+      const submitBtn = document.getElementById('register-submit');
+
+      if (!btnOpen) return;
+
+      function load() {
+        try { return JSON.parse(localStorage.getItem(LS_KEY)) || null; }
+        catch { return null; }
+      }
+      function save(obj) {
+        localStorage.setItem(LS_KEY, JSON.stringify(obj));
+      }
+      function remove() { localStorage.removeItem(LS_KEY); }
+
+      function setModal(show) {
+        modal.classList.toggle('show', show);
+        modal.setAttribute('aria-hidden', show ? 'false' : 'true');
+        if (show) setTimeout(()=> inputDisplay.focus(), 10);
+      }
+
+      function updateUI() {
+        const user = load();
+        if (user) {
+          bodyText.textContent = `You're registered locally as ${user.display_name}.`;
+          btnOpen.textContent = 'Account';
+          btnOpen.classList.remove('secondary');
+        } else {
+          bodyText.textContent = 'Use the in-game register or link a Discord account. (Mock link)';
+          btnOpen.textContent = 'Register';
+          if (!btnOpen.classList.contains('secondary')) btnOpen.classList.add('secondary');
+        }
+      }
+
+      function openForEdit() {
+        const user = load();
+        msg.textContent = '';
+        msg.style.color = '';
+        btnDelete.style.display = user ? 'inline-flex' : 'none';
+        submitBtn.textContent = user ? 'Update' : 'Create account';
+        inputDisplay.value = user?.display_name || '';
+        inputLogin.value = user?.login_username || '';
+        setModal(true);
+      }
+
+      btnOpen.addEventListener('click', openForEdit);
+      btnClose.addEventListener('click', () => setModal(false));
+      modal.addEventListener('click', (e) => { if (e.target === modal) setModal(false); });
+      window.addEventListener('keydown', (e) => { if (e.key === 'Escape') setModal(false); });
+
+      btnDelete.addEventListener('click', () => {
+        remove();
+        msg.textContent = 'Local account removed.';
+        msg.style.color = '#ffb4b4';
+        updateUI();
+        setTimeout(() => setModal(false), 600);
+      });
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const display_name = inputDisplay.value.trim();
+        const login_username = inputLogin.value.trim();
+        if (display_name.length < 3 || display_name.length > 20) {
+          msg.textContent = 'Display name must be 3–20 characters.';
+          msg.style.color = '#ffb4b4';
+          return;
+        }
+        if (!/^[a-z0-9_]{3,20}$/.test(login_username)) {
+          msg.textContent = 'Login username must be 3–20 chars: a–z, 0–9, _';
+          msg.style.color = '#ffb4b4';
+          return;
+        }
+        const payload = { display_name, login_username, created_at: new Date().toISOString() };
+        try {
+          save(payload);
+          msg.textContent = 'Saved locally. Backend integration pending.';
+          msg.style.color = '#7FF0C6';
+          updateUI();
+          setTimeout(() => setModal(false), 700);
+        } catch (err) {
+          msg.textContent = 'Cannot access local storage (browser privacy mode?).';
+          msg.style.color = '#ffb4b4';
+        }
+      });
+
+      updateUI();
     })();
   </script>
 </body>
