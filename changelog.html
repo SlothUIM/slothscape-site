@@ -2,46 +2,46 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>SlothScape</title>
+  <title>SlothScape — Changelog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets_css_site.css">
 </head>
 <body>
   <header class="site-header">
-    <a class="brand" href="index.html">YourAppName</a>
-    <nav class="nav">
-      <a href="about.html">About</a>
-      <a href="features.html">Features</a>
-      <a href="download.html">Download</a>
-      <a href="changelog.html" aria-current="page">Changelog</a>
-      <a href="faq.html">FAQ</a>
-    </nav>
+    <div class="container nav-inner">
+      <a class="brand" href="index.html"><img class="logo" src="favicon.svg" alt=""> SlothScape</a>
+      <nav class="nav" aria-label="Main">
+        <a href="index.html">Home</a>
+        <a href="features.html">Features</a>
+        <a href="download.html">Download</a>
+        <a href="faq.html">FAQ</a>
+        <a href="about.html">About</a>
+        <a href="supporters.html">Supporters</a>
+        <a href="contact.html">Contact</a>
+        <a href="changelog.html" aria-current="page">Changelog</a>
+      </nav>
+    </div>
   </header>
 
-  <main class="container">
+  <main class="container section">
     <h1>Changelog</h1>
-
-    <article class="card">
-      <h2>v0.2.0 – 2025‑09‑02</h2>
-      <ul>
-        <li>Added plugin loader (experimental)</li>
-        <li>Improved crash diagnostics</li>
-        <li>Updated dependencies</li>
-      </ul>
-    </article>
-
-    <article class="card">
-      <h2>v0.1.0 – Initial release</h2>
-      <ul>
-        <li>First public build</li>
-      </ul>
-    </article>
+    <div class="card">
+      <div class="badge">2025‑09‑01</div>
+      <p class="muted">Wilderness boss tweaks and QoL fixes.</p>
+    </div>
+    <div class="card">
+      <div class="badge">2025‑08‑25</div>
+      <p class="muted">Season 1 launch: “The Drowsy Depths”.</p>
+    </div>
   </main>
 
   <footer class="site-footer">
-    <p>© <span id="year"></span> SlothScape • <a href="privacy.html">Privacy</a> • <a href="terms.html">Terms</a></p>
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <div>© <span id="year"></span> SlothScape</div>
+      <div><a class="link" href="privacy.html">Privacy</a> · <a class="link" href="terms.html">Terms</a></div>
+    </div>
   </footer>
-  <script src="assets/js/site.js"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
