@@ -1,0 +1,1 @@
+PNG fallback note: A 192x192 PNG version should be generated from the favicon.svg for optimal browser compatibility. For now, browsers will use the SVG fallback.

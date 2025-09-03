@@ -8,18 +8,20 @@
   <meta name="description" content="SlothScape — a chill OSRS-inspired private server with custom bosses, balanced XP rates, and social-first gameplay.">
   
   <!-- Favicon -->
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="/assets/brand/favicon-192.png" sizes="192x192" type="image/png">
+  <link rel="mask-icon" href="/assets/brand/slothscape-s-monochrome.svg" color="#eac35c">
   
   <!-- Social Meta Tags -->
   <meta property="og:title" content="SlothScape — RuneScape Private Server">
   <meta property="og:description" content="A chill OSRS-inspired private server with custom bosses, balanced XP rates, and social-first gameplay.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="favicon.svg">
+  <meta property="og:image" content="/assets/brand/favicon.svg">
   <meta property="og:url" content="https://slothuim.github.io/slothscape-site/">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="SlothScape — RuneScape Private Server">
   <meta name="twitter:description" content="A chill OSRS-inspired private server with custom bosses, balanced XP rates, and social-first gameplay.">
-  <meta name="twitter:image" content="favicon.svg">
+  <meta name="twitter:image" content="/assets/brand/favicon.svg">
   <style>
     :root{
       --bg-0:#070c18;
@@ -58,6 +60,7 @@
     .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:12px 0;gap:12px}
     .brand{display:flex;align-items:center;gap:12px}
     .brand .logo{width:40px;height:40px;flex:0 0 40px}
+    .brand .brand-icon{display:block;width:auto;height:1.5rem;flex:0 0 auto}
     .brand .name{font-weight:800;letter-spacing:.3px;font-size:20px}
     .nav-links{display:flex;align-items:center;gap:14px;color:var(--muted);flex-wrap:wrap}
     .nav-links a{padding:8px 10px;border-radius:8px}
@@ -242,6 +245,7 @@
   <nav class="nav">
     <div class="container nav-inner">
       <div class="brand">
+        <img class="brand-icon" src="/assets/brand/slothscape-s.svg" alt="SlothScape" />
         <svg class="logo" role="img" aria-label="SlothScape logo"><use href="#slothscape-logo"></use></svg>
         <div class="name">SlothScape</div>
         <div class="status-pill" id="status-pill" title="Mock server status">

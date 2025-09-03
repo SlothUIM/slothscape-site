@@ -65,6 +65,7 @@ a:hover{text-decoration:underline}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:12px 0;gap:12px}
 .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.3px;color:var(--text)}
 .brand .logo{width:28px;height:28px}
+.brand .brand-icon{display:block;width:auto;height:1.5rem;flex:0 0 auto}
 .nav{display:flex;align-items:center;gap:14px;color:var(--muted);flex-wrap:wrap}
 .nav a{padding:8px 10px;border-radius:8px}
 .nav a[aria-current="page"], .nav a:hover{background:#0c1631;color:var(--text)}
