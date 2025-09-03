@@ -195,6 +195,10 @@
       border:1px solid var(--line); background:#0b1735; color:var(--text)
     }
   </style>
+  
+  <!-- External design system -->
+  <link rel="stylesheet" href="assets_css_site.css">
+  <script defer src="/assets/scripts/ui.js"></script>
 
   <!-- Inline SVG symbol for the SlothScape icon (Tile + Coin S) so we can reuse it -->
   <svg width="0" height="0" style="position:absolute; left:-9999px; top:-9999px" aria-hidden="true" focusable="false">
@@ -239,8 +243,8 @@
 
 <body>
   <!-- Nav -->
-  <nav class="nav">
-    <div class="container nav-inner">
+  <nav class="navbar">
+    <div class="container navbar-inner">
       <div class="brand">
         <svg class="logo" role="img" aria-label="SlothScape logo"><use href="#slothscape-logo"></use></svg>
         <div class="name">SlothScape</div>
@@ -250,7 +254,7 @@
           <span class="muted" id="online-count">· 214 online</span>
         </div>
       </div>
-      <div class="nav-links" role="navigation" aria-label="Main">
+      <div class="nav" role="navigation" aria-label="Main">
         <!-- Internal sections still work for the homepage -->
         <a href="#news">News</a>
         <a href="features.html">Features</a>
@@ -264,8 +268,8 @@
         <a href="changelog.html">Changelog</a>
       </div>
       <div class="cta">
-        <a class="btn secondary" href="https://discord.gg/ZUt3U7D9ZU" target="_blank" rel="noopener noreferrer" id="btn-discord">Join Discord</a>
-        <a class="btn" href="download.html" id="btn-play">Play Now</a>
+        <a class="btn btn-secondary" href="https://discord.gg/ZUt3U7D9ZU" target="_blank" rel="noopener noreferrer" id="btn-discord">Join Discord</a>
+        <a class="btn btn-primary" href="download.html" id="btn-play">Play Now</a>
       </div>
     </div>
   </nav>
@@ -278,10 +282,10 @@
         <h1><span class="accent">Sloth</span>Scape</h1>
         <p class="lead">A chill OSRS-inspired private server</p>
         <div class="hero-actions">
-          <a class="btn" href="download.html">Download Client</a>
-          <a class="btn secondary" href="faq.html">How to Start</a>
-          <a class="btn secondary" href="#vote">Vote</a>
-          <a class="btn secondary" href="#store">Store</a>
+          <a class="btn btn-primary" href="download.html">Download Client</a>
+          <a class="btn btn-secondary" href="faq.html">How to Start</a>
+          <a class="btn btn-ghost" href="#vote">Vote</a>
+          <a class="btn btn-ghost" href="#store">Store</a>
         </div>
         <div class="spacer"></div>
         <div class="muted" style="font-size:13px">Direct Connect: <strong>play.slothscape.gg</strong> · Port <strong>43594</strong> (mock)</div>
@@ -431,7 +435,7 @@
           <div class="news-body" id="register-body">Use the in-game register or link a Discord account. (Mock link)</div>
           <div class="spacer"></div>
           <div class="spacer"></div>
-          <button class="btn secondary" id="btn-open-register" type="button">Register</button>
+          <button class="btn btn-secondary" id="btn-open-register" type="button">Register</button>
         </div>
         <div class="card">
           <div class="news-date">STEP 2</div>
@@ -439,7 +443,7 @@
           <div class="news-body">Windows, macOS, and Linux builds. Java will bundle with the launcher. (Mock)</div>
           <div class="spacer"></div>
           <div class="spacer"></div>
-          <a href="download.html" class="btn">Download</a>
+          <a href="download.html" class="btn btn-primary">Download</a>
         </div>
         <div class="card">
           <div class="news-date">STEP 3</div>
@@ -448,7 +452,7 @@
           <div class="spacer"></div>
           <div class="spacer"></div>
           <div class="spacer"></div>
-          <a href="https://discord.gg/ZUt3U7D9ZU" target="_blank" rel="noopener noreferrer" class="btn secondary">Join Discord</a>
+          <a href="https://discord.gg/ZUt3U7D9ZU" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Join Discord</a>
         </div>
       </div>
     </div>
@@ -461,7 +465,7 @@
       <div class="card muted">Loading supporters…</div>
     </div>
     <div class="spacer"></div>
-    <a class="btn secondary" href="supporters_Version3.html">See all supporters</a>
+    <a class="btn btn-link" href="supporters_Version3.html">See all supporters</a>
   </div>
 </section>
   <!-- Footer -->
@@ -479,26 +483,28 @@
   </footer>
 
   <!-- Local-only Register Modal -->
-  <div class="modal-backdrop" id="register-modal" aria-hidden="true" role="dialog" aria-modal="true">
-    <div class="modal" role="document">
-      <header>
+  <div class="modal" id="register-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-header">
         <h3 style="margin:0">Create your account</h3>
-        <button class="close" id="register-close" aria-label="Close">×</button>
-      </header>
-      <form id="register-form" novalidate>
-        <label for="display_name">Website display name</label>
-        <input id="display_name" name="display_name" required minlength="3" maxlength="20" placeholder="e.g., DrowsySloth">
-        <label for="login_username">Login username (private)</label>
-        <input id="login_username" name="login_username" required pattern="^[a-z0-9_]{3,20}$" placeholder="a–z, 0–9, _ only">
-        <div class="muted" style="font-size:12px;margin:.35rem 0 .6rem">
-          This is a local-only mock. No data leaves your browser.
-        </div>
-        <div style="display:flex;gap:.5rem;justify-content:flex-end;align-items:center">
-          <button class="btn secondary" type="button" id="register-delete" style="margin-right:auto;display:none">Delete local</button>
-          <button class="btn" type="submit" id="register-submit">Create account</button>
-        </div>
-        <div id="register-msg" class="muted" style="margin-top:.55rem"></div>
-      </form>
+        <button class="btn btn-ghost" id="register-close" aria-label="Close" style="padding:4px 8px">×</button>
+      </div>
+      <div class="modal-body">
+        <form id="register-form" novalidate>
+          <label for="display_name">Website display name</label>
+          <input id="display_name" name="display_name" required minlength="3" maxlength="20" placeholder="e.g., DrowsySloth">
+          <label for="login_username">Login username (private)</label>
+          <input id="login_username" name="login_username" required pattern="^[a-z0-9_]{3,20}$" placeholder="a–z, 0–9, _ only">
+          <div class="muted" style="font-size:12px;margin:.35rem 0 .6rem">
+            This is a local-only mock. No data leaves your browser.
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" type="button" id="register-delete" style="display:none">Delete local</button>
+        <button class="btn btn-primary" type="submit" id="register-submit" form="register-form">Create account</button>
+        <div id="register-msg" class="muted" style="margin-top:.55rem;width:100%"></div>
+      </div>
     </div>
   </div>
 
