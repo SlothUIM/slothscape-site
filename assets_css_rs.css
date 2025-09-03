@@ -1,0 +1,271 @@
+/* RuneScape-inspired theme overrides */
+/* OSRS-like gold/steel/stone aesthetics */
+
+:root {
+  /* OSRS-inspired color palette */
+  --rs-gold: #ffcc00;
+  --rs-gold-dark: #cc9900;
+  --rs-gold-light: #ffdd33;
+  
+  --rs-steel: #8a8a8a;
+  --rs-steel-dark: #666666;
+  --rs-steel-light: #adadad;
+  
+  --rs-stone: #b8860b;
+  --rs-stone-dark: #8b6914;
+  --rs-stone-light: #daa520;
+  
+  --rs-panel: #2c1810;
+  --rs-panel-light: #3d2317;
+  --rs-panel-dark: #1a0f08;
+  
+  --rs-border: #8b4513;
+  --rs-border-light: #cd853f;
+  
+  --rs-bg: #1a0f08;
+  --rs-bg-gradient: linear-gradient(135deg, #2c1810 0%, #1a0f08 100%);
+  
+  /* Override existing CSS variables with RuneScape theme */
+  --bg-0: var(--rs-bg);
+  --bg-1: var(--rs-panel-dark);
+  --bg-2: var(--rs-panel);
+  --panel: var(--rs-panel);
+  --line: var(--rs-border);
+  --accent: var(--rs-gold);
+  --accent-2: var(--rs-gold-dark);
+  --gold: var(--rs-gold-light);
+}
+
+/* Body background with stone/medieval texture feel */
+body {
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(184, 134, 11, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(139, 105, 20, 0.1) 0%, transparent 50%),
+    var(--rs-bg-gradient) !important;
+}
+
+/* Navigation with OSRS-style panel look */
+.nav {
+  background: linear-gradient(180deg, var(--rs-panel-light) 0%, var(--rs-panel) 100%) !important;
+  border-bottom: 2px solid var(--rs-border) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Brand styling */
+.brand .name {
+  color: var(--rs-gold) !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Navigation links with OSRS hover style */
+.nav-links a {
+  color: var(--rs-steel-light) !important;
+  transition: all 0.2s ease !important;
+}
+
+.nav-links a:hover {
+  background: linear-gradient(180deg, var(--rs-gold-dark) 0%, var(--rs-stone-dark) 100%) !important;
+  color: #ffffff !important;
+  border: 1px solid var(--rs-border-light) !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Buttons with RuneScape-style design */
+.btn {
+  background: linear-gradient(180deg, var(--rs-gold) 0%, var(--rs-gold-dark) 100%) !important;
+  color: #000000 !important;
+  border: 2px solid var(--rs-border) !important;
+  border-radius: 6px !important;
+  font-weight: bold !important;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 
+    0 3px 6px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4) !important;
+}
+
+.btn:hover {
+  background: linear-gradient(180deg, var(--rs-gold-light) 0%, var(--rs-gold) 100%) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 
+    0 4px 8px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5) !important;
+}
+
+.btn.secondary {
+  background: linear-gradient(180deg, var(--rs-steel-light) 0%, var(--rs-steel) 100%) !important;
+  color: #ffffff !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8) !important;
+  box-shadow: 
+    0 3px 6px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+}
+
+.btn.secondary:hover {
+  background: linear-gradient(180deg, var(--rs-steel) 0%, var(--rs-steel-dark) 100%) !important;
+}
+
+/* Cards with medieval panel styling */
+.card {
+  background: 
+    linear-gradient(180deg, var(--rs-panel-light) 0%, var(--rs-panel) 100%) !important;
+  border: 2px solid var(--rs-border) !important;
+  border-radius: 8px !important;
+  box-shadow: 
+    0 4px 8px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Panel styling */
+.panel {
+  background: 
+    linear-gradient(180deg, var(--rs-panel-light) 0%, var(--rs-panel) 100%) !important;
+  border: 2px solid var(--rs-border) !important;
+  box-shadow: 
+    0 4px 8px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Status pill with RuneScape styling */
+.status-pill {
+  background: linear-gradient(180deg, var(--rs-panel-light) 0%, var(--rs-panel) 100%) !important;
+  border: 1px solid var(--rs-border) !important;
+  color: var(--rs-gold) !important;
+}
+
+/* Hero section adjustments */
+.hero h1 .accent {
+  color: var(--rs-gold) !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Modal styling */
+.modal {
+  background: 
+    linear-gradient(180deg, var(--rs-panel-light) 0%, var(--rs-panel) 100%) !important;
+  border: 3px solid var(--rs-border) !important;
+  border-radius: 8px !important;
+  box-shadow: 
+    0 8px 16px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+.modal-backdrop {
+  background: rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Form inputs with OSRS styling */
+input, textarea {
+  background: 
+    linear-gradient(180deg, var(--rs-panel-dark) 0%, var(--rs-panel) 100%) !important;
+  border: 2px inset var(--rs-border) !important;
+  border-radius: 4px !important;
+  color: var(--rs-gold-light) !important;
+}
+
+input:focus, textarea:focus {
+  border-color: var(--rs-gold) !important;
+  box-shadow: 0 0 8px rgba(255, 204, 0, 0.3) !important;
+  outline: none !important;
+}
+
+/* Table styling for highscores */
+.hi-table td {
+  background: 
+    linear-gradient(180deg, var(--rs-panel-light) 0%, var(--rs-panel) 100%) !important;
+  border: 1px solid var(--rs-border) !important;
+  color: var(--rs-gold-light) !important;
+}
+
+.hi-table th {
+  color: var(--rs-gold) !important;
+  font-weight: bold !important;
+}
+
+/* Footer styling */
+.footer {
+  background: 
+    linear-gradient(180deg, transparent 0%, var(--rs-panel-dark) 100%) !important;
+  border-top: 2px solid var(--rs-border) !important;
+}
+
+/* Links */
+.link {
+  color: var(--rs-gold) !important;
+}
+
+.link:hover {
+  color: var(--rs-gold-light) !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Pill styling */
+.pill {
+  background: 
+    linear-gradient(180deg, var(--rs-panel-light) 0%, var(--rs-panel) 100%) !important;
+  border: 1px solid var(--rs-border) !important;
+  color: var(--rs-gold) !important;
+}
+
+/* Badge styling */
+.badge {
+  background: 
+    linear-gradient(180deg, var(--rs-stone) 0%, var(--rs-stone-dark) 100%) !important;
+  border: 1px solid var(--rs-border) !important;
+  color: #ffffff !important;
+}
+
+/* News item styling */
+.news-date {
+  color: var(--rs-gold) !important;
+  font-weight: bold !important;
+}
+
+.news-title {
+  color: var(--rs-gold-light) !important;
+}
+
+/* Feature styling */
+.feature {
+  background: 
+    linear-gradient(180deg, var(--rs-panel-light) 0%, var(--rs-panel) 100%) !important;
+  border: 2px solid var(--rs-border) !important;
+}
+
+.feature h3 {
+  color: var(--rs-gold) !important;
+}
+
+/* Screenshot placeholders */
+.shot {
+  background: 
+    linear-gradient(135deg, rgba(184, 134, 11, 0.2) 0%, transparent 35%),
+    linear-gradient(180deg, var(--rs-panel) 0%, var(--rs-panel-dark) 100%) !important;
+  border: 2px solid var(--rs-border) !important;
+  color: var(--rs-gold) !important;
+}
+
+/* Supporter grid styling */
+.sup-avatar {
+  background: 
+    linear-gradient(180deg, var(--rs-panel-light) 0%, var(--rs-panel) 100%) !important;
+  border: 2px solid var(--rs-border) !important;
+  color: var(--rs-gold) !important;
+}
+
+.sup-name {
+  color: var(--rs-gold-light) !important;
+}
+
+/* Close button for modal */
+.close {
+  background: 
+    linear-gradient(180deg, var(--rs-steel-light) 0%, var(--rs-steel) 100%) !important;
+  border: 1px solid var(--rs-border) !important;
+  color: #ffffff !important;
+  border-radius: 4px !important;
+}
+
+.close:hover {
+  background: 
+    linear-gradient(180deg, var(--rs-steel) 0%, var(--rs-steel-dark) 100%) !important;
+}
