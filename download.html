@@ -1,71 +1,49 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Download – SlothScape Client</title>
-  <link rel="stylesheet" href="assets/css/site.css" />
-  <head>
   <meta charset="utf-8">
-  <title>SlothScape</title>
+  <title>SlothScape — Download</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets_css_site.css">
 </head>
-</head>
 <body>
   <header class="site-header">
-    <a class="brand" href="index.html">SlothScape</a>
-    <nav class="nav">
-      <a href="about.html">About</a>
-      <a href="features.html">Features</a>
-      <a href="download.html" aria-current="page">Download</a>
-      <a href="faq.html">FAQ</a>
-      <a href="contact.html">Contact</a>
-    </nav>
+    <div class="container nav-inner">
+      <a class="brand" href="index.html"><img class="logo" src="favicon.svg" alt=""> SlothScape</a>
+      <nav class="nav" aria-label="Main">
+        <a href="index.html">Home</a>
+        <a href="features.html">Features</a>
+        <a href="download.html" aria-current="page">Download</a>
+        <a href="faq.html">FAQ</a>
+        <a href="about.html">About</a>
+        <a href="supporters.html">Supporters</a>
+        <a href="contact.html">Contact</a>
+        <a href="changelog.html">Changelog</a>
+      </nav>
+    </div>
   </header>
 
-  <main class="container">
-    <h1>Download</h1>
-    <p>Your platform is detected below. If it’s wrong, pick manually.</p>
-
-    <div class="grid downloads">
-      <a class="card button" id="dl-exe" href="#" data-href="https://example.com/YourAppName-setup.exe">
-        <span>Windows</span>
-        <small>.exe installer</small>
-      </a>
-      <a class="card button" id="dl-zip" href="#" data-href="https://example.com/YourAppName-mac.dmg">
-        <span>macOS</span>
-        <small>.zip</small>
-      </a>
-      <a class="card button" id="dl-jar" href="https://example.com/YourAppName-all.jar">
-        <span>Universal</span>
-        <small>JAR</small>
-      </a>
+  <main class="container section">
+    <h1>Download Client</h1>
+    <p class="muted">Windows, macOS, and Linux builds. Java bundles with the launcher.</p>
+    <div class="grid cols-3 downloads">
+      <a class="card button" href="#" download>Windows</a>
+      <a class="card button" href="#" download>macOS</a>
+      <a class="card button" href="#" download>Linux</a>
     </div>
-
-    <section>
-      <h2>Requirements</h2>
-      <ul>
-        <li>Java 8+ (bundled with installer on Windows/macOS)</li>
-        <li>OpenGL‑capable GPU</li>
-        <li>Optional: Discord app for RPC</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Verify Checksums</h2>
-      <pre class="code"># Replace with real checksums
-SlothScape-setup.exe  SHA256: abc123...
-SlothScape-mac.dmg    SHA256: def456...
-SlothScape-linux.zip  SHA256: ghi789...
-SlothScape.jar    SHA256: jkl012...</pre>
-    </section>
+    <div class="card" style="margin-top:1rem">
+      <div class="badge">Checksums</div>
+      <pre class="code">Will be published with each release.</pre>
+    </div>
   </main>
 
   <footer class="site-footer">
-    <p>© <span id="year"></span> SlothScape • <a href="privacy.html">Privacy</a> • <a href="terms.html">Terms</a></p>
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <div>© <span id="year"></span> SlothScape</div>
+      <div><a class="link" href="privacy.html">Privacy</a> · <a class="link" href="terms.html">Terms</a></div>
+    </div>
   </footer>
-  <script src="assets/js/site.js"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
