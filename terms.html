@@ -1,37 +1,42 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Terms of Service – SlothScape</title>
+  <meta charset="utf-8">
+  <title>SlothScape — Terms</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets_css_site.css">
 </head>
 <body>
   <header class="site-header">
-    <a class="brand" href="index.html">YourAppName</a>
-    <nav class="nav">
-      <a href="about.html">About</a>
-      <a href="features.html">Features</a>
-      <a href="download.html">Download</a>
-      <a href="faq.html">FAQ</a>
-    </nav>
+    <div class="container nav-inner">
+      <a class="brand" href="index.html"><img class="logo" src="favicon.svg" alt=""> SlothScape</a>
+      <nav class="nav" aria-label="Main">
+        <a href="index.html">Home</a>
+        <a href="features.html">Features</a>
+        <a href="download.html">Download</a>
+        <a href="faq.html">FAQ</a>
+        <a href="about.html">About</a>
+        <a href="supporters.html">Supporters</a>
+        <a href="contact.html">Contact</a>
+        <a href="changelog.html">Changelog</a>
+      </nav>
+    </div>
   </header>
 
-  <main class="container">
-    <h1>Terms of Service</h1>
-    <p>This is a template. Replace with your actual terms.</p>
-    <ol>
-      <li>Software provided “as is.”</li>
-      <li>No warranty; limitation of liability applies.</li>
-      <li>Acceptable use policy and prohibited behavior.</li>
-    </ol>
+  <main class="container section">
+    <h1>Terms</h1>
+    <div class="card">
+      <p class="muted">Use of SlothScape is subject to our rules and community guidelines. Do not engage in cheating, RWT, harassment, or exploits. Violations may result in suspension.</p>
+    </div>
   </main>
 
   <footer class="site-footer">
-    <p>© <span id="year"></span> YourAppName • <a href="privacy.html">Privacy</a> • <a href="terms.html" aria-current="page">Terms</a></p>
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <div>© <span id="year"></span> SlothScape</div>
+      <div><a class="link" href="privacy.html">Privacy</a> · <a class="link" href="terms.html">Terms</a></div>
+    </div>
   </footer>
-  <script src="assets/js/site.js"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
