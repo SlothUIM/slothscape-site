@@ -2,54 +2,49 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>SlothScape</title>
+  <title>SlothScape — About</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets_css_site.css">
 </head>
 <body>
   <header class="site-header">
-    <a class="brand" href="index.html">YourAppName</a>
-    <nav class="nav">
-      <a href="about.html" aria-current="page">About</a>
-      <a href="features.html">Features</a>
-      <a href="download.html">Download</a>
-      <a href="faq.html">FAQ</a>
-      <a href="contact.html">Contact</a>
-    </nav>
+    <div class="container nav-inner">
+      <a class="brand" href="index.html"><img class="logo" src="favicon.svg" alt=""> SlothScape</a>
+      <nav class="nav" aria-label="Main">
+        <a href="index.html">Home</a>
+        <a href="features.html">Features</a>
+        <a href="download.html">Download</a>
+        <a href="faq.html">FAQ</a>
+        <a href="about.html" aria-current="page">About</a>
+        <a href="supporters.html">Supporters</a>
+        <a href="contact.html">Contact</a>
+        <a href="changelog.html">Changelog</a>
+      </nav>
+    </div>
   </header>
 
-  <main class="container">
-    <h1>About YourAppName</h1>
-    <p>YourAppName is a lightweight Java-based client focused on speed, stability, and an uncluttered UI.</p>
-
-    <section class="grid">
-      <article class="card">
-        <h2>Mission</h2>
-        <p>Deliver a smooth, no‑nonsense experience with sensible defaults and powerful power‑user features.</p>
-      </article>
-      <article class="card">
-        <h2>Values</h2>
-        <ul>
-          <li>Performance first</li>
-          <li>Transparent and configurable</li>
-          <li>Privacy‑respecting</li>
-        </ul>
-      </article>
-      <article class="card">
-        <h2>Roadmap</h2>
-        <ul>
-          <li>Plugin API beta</li>
-          <li>Auto‑updater</li>
-          <li>In‑client diagnostics</li>
-        </ul>
-      </article>
-    </section>
+  <main class="container section">
+    <h1>About SlothScape</h1>
+    <p class="muted">A chill, OSRS-inspired experience built on r190-era content. No pay-to-win—just thoughtful rates, solid QoL, and social-first gameplay.</p>
+    <div class="grid cols-2">
+      <div class="card">
+        <h3>Vision</h3>
+        <p>Make RuneScape feel relaxed again: fair progression, modern client comforts, and a community that raids and skills together without FOMO.</p>
+      </div>
+      <div class="card">
+        <h3>What to expect</h3>
+        <p>Seasonal themes, late‑game bosses (CoX, ToB, Nightmare), and skilling hubs like Prifddinas, Kebos, and Fossil Island—all polished and stable.</p>
+      </div>
+    </div>
   </main>
 
   <footer class="site-footer">
-    <p>© <span id="year"></span> YourAppName • <a href="privacy.html">Privacy</a> • <a href="terms.html">Terms</a></p>
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <div>© <span id="year"></span> SlothScape</div>
+      <div><a class="link" href="privacy.html">Privacy</a> · <a class="link" href="terms.html">Terms</a></div>
+    </div>
   </footer>
-  <script src="assets/js/site.js"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
