@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>SlothScape</title>
+  <title>SlothScape — Features (OSRS r190)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets_css_site.css">
 </head>
 <body>
   <header class="site-header">
-    <a class="brand" href="index.html">YourAppName</a>
+    <a class="brand" href="index.html">SlothScape</a>
     <nav class="nav">
       <a href="about.html">About</a>
       <a href="features.html" aria-current="page">Features</a>
@@ -21,25 +21,120 @@
 
   <main class="container">
     <h1>Features</h1>
+    <p class="muted">Core content is built from Old School RuneScape’s r190-era assets, mechanics, and data. Rates and QoL are tuned for SlothScape’s chill pace without pay‑to‑win.</p>
+
+    <h2>Core Engine</h2>
     <ul class="feature-list">
-      <li><strong>Fast startup:</strong> tuned JVM flags and lazy initialization.</li>
-      <li><strong>Discord Rich Presence:</strong> optional integration with privacy controls.</li>
-      <li><strong>Config profiles:</strong> export/import your setup.</li>
-      <li><strong>Crash‑safe:</strong> robust error handling and logs.</li>
-      <li><strong>Light/Dark theme:</strong> auto‑detects your system setting.</li>
+      <li><strong>OSRS r190 cache:</strong> items, NPCs, maps, object defs, sequences, and varbits from the r190 data set.</li>
+      <li><strong>Accurate combat formulas:</strong> OSRS-style attack rolls, max hits, prayer multipliers, and tick timing.</li>
+      <li><strong>Pathing & interactions:</strong> region clipping, projectile logic, doors/ladder handling, and multi-combat rules.</li>
+      <li><strong>Drop tables:</strong> boss tables and uniques aligned with r190, with broadcast announcements for notable drops.</li>
+    </ul>
+
+    <h2>Bossing & Raids (r190)</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Chambers of Xeric (CoX)</h3>
+        <p class="muted">Scalable raids with rotation, tightrope, guardians, Vasa/Vespula/Vanguard, and Olm phases. Unique rewards include Twisted Bow, Kodai, and ancestral kit.</p>
+      </div>
+      <div class="card">
+        <h3>Theatre of Blood (ToB)</h3>
+        <p class="muted">Verzik’s theatre with Nylo waves, Bloat pathing, Sotetseg maze, Xarpus exhumed, and proper purple/white chest rules. Scythe, Ghrazi, and Justiciar sets.</p>
+      </div>
+      <div class="card">
+        <h3>The Nightmare of Ashihama</h3>
+        <p class="muted">Totems, parasites, husks, sleepwalkers, and phase‑based tiles. Inquisitor’s set and mace on the unique table.</p>
+      </div>
+      <div class="card">
+        <h3>Gauntlet & Corrupted</h3>
+        <p class="muted">Resource routing, weapon frame upgrades, Hunllef stomp/prayer cycles. Crystal armor seeds and weapon seeds available.</p>
+      </div>
+      <div class="card">
+        <h3>Zalcano</h3>
+        <p class="muted">Mining/Smithing DPS loop, demonic runes, boulder mechanics, and crystal shard rewards consistent with r190.</p>
+      </div>
+      <div class="card">
+        <h3>Alchemical Hydra</h3>
+        <p class="muted">Phase rotations, fountain resets, and poison pools. Hydra leather/Claw drops per r190 rates.</p>
+      </div>
+      <div class="card">
+        <h3>Other bosses</h3>
+        <p class="muted">Zulrah, Vorkath, Cerberus, Abyssal Sire, Kraken, Skotizo, Kalphite Queen.</p>
+      </div>
+      <div class="card">
+        <h3>Wilderness (pre‑rework set)</h3>
+        <p class="muted">Venenatis, Callisto, Vet’ion, Chaos Elemental/Fanatic, Scorpia with multi/singles rules and teleblock/skull behavior.</p>
+      </div>
+    </div>
+
+    <h2>Skilling & World</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Kebos Lowlands</h3>
+        <p class="muted">Farming Guild contracts, Mount Karuulm, Konar tasks, Aerial Fishing (Molch), and Alchemical Hydra’s lair.</p>
+      </div>
+      <div class="card">
+        <h3>Prifddinas</h3>
+        <p class="muted">Song of the Elves city, crystal shard economy, Zalcano, Gauntlet lobby, and crystal tools.</p>
+      </div>
+      <div class="card">
+        <h3>Fossil Island</h3>
+        <p class="muted">Birdhouses, Herbiboar, underwater thieving/agility, Volcanic mine access.</p>
+      </div>
+      <div class="card">
+        <h3>Zeah/Great Kourend</h3>
+        <p class="muted">House favor regions, Sand Crabs, Lovakengj blast mine, Arceuus essence.</p>
+      </div>
+      <div class="card">
+        <h3>Gathering & production</h3>
+        <p class="muted">Motherlode Mine, Wintertodt, Rooftop agility, Rune crafting altars, Blast Furnace, and Charter crafting routes.</p>
+      </div>
+      <div class="card">
+        <h3>Slayer System</h3>
+        <p class="muted">Konar/Nieve/Steve/Duradel tasks, unlocks, superior encounters, and boss tasks where applicable.</p>
+      </div>
+    </div>
+
+    <h2>Minigames & Challenges</h2>
+    <ul class="feature-list">
+      <li><strong>Barrows:</strong> set roll logic, chest RNG, and tunnel rotations.</li>
+      <li><strong>Pest Control:</strong> portals, shields, brawler pathing, and point rewards.</li>
+      <li><strong>TzHaar challenges:</strong> Fight Caves with Jad waves and Inferno for end‑game practice.</li>
+      <li><strong>Clue scrolls:</strong> riddle, emote, and coordinate steps with dug locations and stash units where applicable.</li>
+    </ul>
+
+    <h2>Quality of Life</h2>
+    <ul class="feature-list">
+      <li><strong>Modern client:</strong> GPU, UI scaling, instance timers, loot beams, tile indicators, and camera unlocks.</li>
+      <li><strong>Cosmetic‑only perks:</strong> supporter badges, titles, and hub auras that never affect power.</li>
+      <li><strong>Trade & safety:</strong> price hints on noted uniques, dupe protections, and anti‑scam confirmations.</li>
+      <li><strong>Social systems:</strong> clan chat, group instance keys, and boss kill‑count broadcasts.</li>
     </ul>
 
     <h2>Screenshots</h2>
     <div class="grid">
-      <div class="card placeholder">Screenshot #1</div>
-      <div class="card placeholder">Screenshot #2</div>
-      <div class="card placeholder">Screenshot #3</div>
+      <div class="card placeholder">CoX raid lobby (r190)</div>
+      <div class="card placeholder">Theatre of Blood (Verzik)</div>
+      <div class="card placeholder">The Nightmare arena</div>
+      <div class="card placeholder">Prifddinas — The Gauntlet</div>
+      <div class="card placeholder">Kebos — Mount Karuulm</div>
+      <div class="card placeholder">Fossil Island — Birdhouses</div>
+    </div>
+
+    <div class="card" style="margin-top:1rem">
+      <strong>Note on revision:</strong>
+      <p class="muted" style="margin:.4rem 0 0">
+        This page references OSRS r190 content. Some later‑revision features are intentionally excluded. If you spot something from a newer rev, it’s either disabled or replaced with an r190‑appropriate variant.
+      </p>
     </div>
   </main>
 
   <footer class="site-footer">
-    <p>© <span id="year"></span> YourAppName • <a href="privacy.html">Privacy</a> • <a href="terms.html">Terms</a></p>
+    <p>© <span id="year"></span> SlothScape • <a href="privacy.html">Privacy</a> • <a href="terms.html">Terms</a></p>
   </footer>
-  <script src="assets/js/site.js"></script>
+  <script>
+    // Update footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
