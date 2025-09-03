@@ -7,8 +7,7 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets_css_site.css">
   <style>
-    .page-head { display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-bottom:1rem; }
-    .filters { display:flex; flex-wrap:wrap; gap:.5rem; }
+    .filters { display:flex; flex-wrap:wrap; gap:.5rem; margin:.5rem 0 1rem; }
     .button.secondary {
       background: transparent; color: var(--text);
       box-shadow: inset 0 0 0 1px rgba(255,255,255,.16);
@@ -36,30 +35,33 @@
     .tier-Silver  { color:#e2e6f0; border-color:#b9c4da; }
     .tier-Bronze  { color:#f2c1a0; border-color:#dba983; }
     .tier-Supporter { color:#b9c4da; border-color:#9aa7bd; }
-    .hero-cta { display:flex; gap:.6rem; flex-wrap:wrap; }
   </style>
 </head>
 <body>
   <header class="site-header">
-    <div class="brand">SlothScape</div>
-    <nav class="nav" aria-label="Main">
-      <a href="index.html">Home</a>
-      <a href="features.html">Features</a>
-      <a href="download.html">Download</a>
-      <a href="faq.html">FAQ</a>
-      <a href="about.html">About</a>
-      <a href="changelog.html">Changelog</a>
-    </nav>
+    <div class="container nav-inner">
+      <a class="brand" href="index.html"><img class="logo" src="favicon.svg" alt=""> SlothScape</a>
+      <nav class="nav" aria-label="Main">
+        <a href="index.html">Home</a>
+        <a href="features.html">Features</a>
+        <a href="download.html">Download</a>
+        <a href="faq.html">FAQ</a>
+        <a href="about.html">About</a>
+        <a href="supporters.html" aria-current="page">Supporters</a>
+        <a href="contact.html">Contact</a>
+        <a href="changelog.html">Changelog</a>
+      </nav>
+    </div>
   </header>
 
-  <main class="container">
-    <div class="page-head">
+  <main class="container section">
+    <div class="page-head" style="display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1rem;">
       <div>
         <h1 style="margin:.2rem 0">Supporter Wall</h1>
-        <div class="muted">Huge thanks to everyone backing SlothScape. You keep the server snoozing smoothly.</div>
+        <div class="muted">Huge thanks to everyone backing SlothScape.</div>
       </div>
       <div class="hero-cta">
-        <a class="button" id="btn-patreon" href="https://patreon.com/" target="_blank" rel="noopener">Become a Patron</a>
+        <a class="btn" id="btn-patreon" href="https://patreon.com/" target="_blank" rel="noopener">Become a Patron</a>
       </div>
     </div>
 
@@ -73,22 +75,22 @@
     </div>
 
     <div class="muted" id="supporter-stats" style="margin:.75rem 0 1rem">Loading supporters…</div>
-
-    <div id="supporter-grid" class="grid"></div>
-
+    <div id="supporter-grid" class="grid cols-4"></div>
     <div style="margin-top:1.5rem" class="muted">
-      Want to be featured? Make sure your Patreon privacy settings allow creators to display your name and avatar.
+      Want to be featured? Allow your name/avatar to be shown in Patreon privacy settings.
     </div>
   </main>
 
   <footer class="site-footer">
-    <div class="brand">© 2025 SlothScape</div>
-    <div><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></div>
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <div>© <span id="year"></span> SlothScape</div>
+      <div><a class="link" href="privacy.html">Privacy</a> · <a class="link" href="terms.html">Terms</a></div>
+    </div>
   </footer>
 
   <script>
-    // Configure your Patreon page URL:
-    const PATRON_URL = 'https://patreon.com/'; // e.g. 'https://patreon.com/SlothScape'
+    // Configure your Patreon URL
+    const PATRON_URL = 'https://patreon.com/';
     document.getElementById('btn-patreon').setAttribute('href', PATRON_URL);
 
     const TIER_ORDER = ['Diamond','Gold','Silver','Bronze','Supporter'];
@@ -117,7 +119,7 @@
           card.className = 'card supporter-card';
           card.href = s.url || PATRON_URL;
           card.target = '_blank';
-          card.rel = 'noopener';
+          card.rel = 'noopener noreferrer';
           card.title = s.name;
 
           const avatar = document.createElement('div');
@@ -194,7 +196,7 @@
             if (ta !== tb) return ta - tb;
             const da = a.since ? Date.parse(a.since) : 0;
             const db = b.since ? Date.parse(b.since) : 0;
-            return db - da; // newest first within tier
+            return db - da;
           });
         render();
       })
@@ -202,6 +204,8 @@
         ALL_SUPPORTERS = [];
         render();
       });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
